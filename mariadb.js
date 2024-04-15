@@ -5,7 +5,7 @@ const mariadb = require('mysql2');
 const connection = mariadb.createConnection({
     host : 'localhost',
     user : 'root',
-    password : 'root',
+    password : '0504',
     database : 'Bookshop',
     dateStrings : true
 });

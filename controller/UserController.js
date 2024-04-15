@@ -5,7 +5,6 @@ const {StatusCodes} = require('http-status-codes') // status code 모듈
 const jwt = require('jsonwebtoken') // jwt 모듈
 const crypto = require('crypto'); // crypto 모듈 : 암호화
 const dotenv = require('dotenv'); // dotenv 모듈
-const e = require('express');
 dotenv.config();
 
 const join = (req, res) => {
