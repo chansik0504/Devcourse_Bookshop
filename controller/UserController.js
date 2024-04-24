@@ -1,5 +1,3 @@
-// 박성률
-
 const conn = require('../mariadb'); // db모듈
 const {StatusCodes} = require('http-status-codes') // status code 모듈
 const jwt = require('jsonwebtoken') // jwt 모듈
@@ -22,7 +20,12 @@ const join = (req, res) => {
                 console.log(err);
                 res.status(StatusCodes.BAD_REQUEST).end();
             }
-            res.status(StatusCodes.CREATED).json(results);
+
+            if (results.affectedRows) {
+                return res.status(StatusCodes.CREATED).json(results);
+            } else {
+                return res.status(StatusCodes.BAD_REQUEST).end();
+            }
         })
 };
 
@@ -44,9 +47,10 @@ const login = (req, res) => {
             // => 디비 비밀번호랑 비교
             if (loginUser && loginUser.password == hashPassword) {
                 const token = jwt.sign({
+                    id : loginUser.id,
                     email : loginUser.email
                 }, process.env.PRIVATE_KEY, {
-                    expiresIn : '5m',
+                    expiresIn : '3m',
                     issuer : "songa"
                 });
 

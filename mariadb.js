@@ -8,6 +8,6 @@ const connection = mariadb.createConnection({
     password : '0504',
     database : 'Bookshop',
     dateStrings : true
-});
+});  
 
 module.exports = connection;
